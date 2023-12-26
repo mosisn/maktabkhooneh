@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-    <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>teachers</title>
+    <title>maktabkhooneh</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" integrity="sha384-nU14brUcp6StFntEOOEBvcJm4huWjB0OcIeQ3fltAfSmuZFrkAif0T+UtNGlKKQv" crossorigin="anonymous">
-
-    </head>
-    <body>
+</head>
+<body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">
@@ -47,20 +46,16 @@
           </div>
         </div>
       </nav>
-    <h3> لیست اساتید : </h3>
-<table>
-    <tbody>
-        <tr>
-            {% for item in Teachers %}
-        
-            <td style="color: rgb(0,156,167);">
-              <a href="{{item.name}}">
-                {{ item.name }}
-              </a>
-            </td>
-        </tr>
-            {% endfor %}
-    </tbody>
-</table>
-    </body>
- </html>
+    <h3 style="margin: 5%;"> {{ Teachers.name }} </h3>
+
+    
+      <h4>درباره این استاد:</h4>
+      <p style="margin: 7%;">    {{ Teachers.about }}</p>
+      <h5>دوره های این استاد:</h5>
+      {{ teacher_course }}
+
+
+
+
+</body>
+</html>

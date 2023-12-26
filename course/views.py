@@ -1,5 +1,5 @@
 from django.http.response import HttpResponse, JsonResponse
-from .models import Course, Main_Learn, Sub_Learn, Sub_Sub_Learn, Teacher,Ticket
+from .models import Course, Main_Learn, Sub_Learn, Sub_Sub_Learn, Teacher,Ticket, teacher_courses
 from django.shortcuts import render
 from random import randint
 
@@ -19,6 +19,22 @@ def course_page(request):
     }
     return render(request, 'course_page/course_page.html', context=courses)
 
+def teacher_page(request, name):
+    #  this is a view for teacher page
+    try:
+        teacher = Teacher.objects.get(name=name)
+    except:
+        teacher=None
+    teachers = {
+        'Teachers' : teacher
+    }
+    return render(request, 'teachers_list/teacher_page.html', context=teachers)
+
+
+def teacher_page_courses(request, name):
+    #  this is a view for teacher page course list
+    teacher_course = teacher_courses(name)
+    return render(request, 'teachers_list/teacher_page.html', context=teacher_course)
 
 def teachers_page(request):
     #  this is a view for teacher list
@@ -39,18 +55,20 @@ def course_page(request, code):
             }
             return render(request, 'course_page/course_page.html', context=courses)
     if request.method == 'POST':
+        current_course = Course.objects.get(number=code)
         email = request.POST['email']
         name = request.POST['name']
-        lastname = request.POST['lastname']3
-        nationalid = request.POST['nationalid']
-        seat = request.POST['seat']
+        lastname = request.POST['lastname']
+        phonenumber = request.POST['nationalid']
+        # seat = request.POST['seat']
         Ticket.objects.create(
             #  course= Sub_Sub_Learn.objects.get(number=code),
+             course= current_course,
              email=email,
              name=name,
              last_name=lastname,
-             nationalid=nationalid,
-             seat=seat,
+             phonenumber=phonenumber,
+            #  seat=seat,
              reservation= generate_random_code()
             )
         return HttpResponse('The ticket reserved!')

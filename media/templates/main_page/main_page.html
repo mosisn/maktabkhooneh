@@ -20,7 +20,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="learn/list">اساتید</a>
+                <a class="nav-link active" aria-current="page" href="learn/teachers">اساتید</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Link</a>
@@ -65,7 +65,13 @@
             
                 <td style="color: rgb(0,156,167);">{{ item.name }}</td>
                 <td>{{ item.category }}</td>
-                <td>{{ item.teacher }}</td>
+                <td>
+                  <a href="learn/{{item.teacher}}">
+                    {{ item.teacher }}
+
+                  </a>
+
+                </td>
                 <td style="color: rgb(198,73,124);">{{ item.price }}</td>
                 <td>
                   <a href="learn/{{item.number}}">
