@@ -144,8 +144,13 @@ def get_today_holidays():
     return data
 
 def holiday(request):
-    for i in get_today_holidays():
-        if i == True:
-            return HttpResponse('کاربر گرامی با توجه به تعطیلی امروز ممکن است برخی از سفارشات و یا پشتیبانیها با تاخیر انجام شود')
-        if i == False:
-            return HttpResponse('همه چیز اوکیه')
+    '''
+    it returns the message if its a holiday today.
+    '''
+    data = get_today_holidays()
+    request = data.get("is_holiday")
+    message = { 'message' : 'کاربر گرامی با توجه به تعطیلی امروز ممکن است برخی از سفارشات و یا پشتیبانیها با تاخیر انجام شود'}
+    if request == True:
+            return render(request, 'main_page/main_page.html', context=message)
+    else:
+        None
