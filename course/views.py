@@ -2,6 +2,10 @@ from django.http.response import HttpResponse, JsonResponse
 from .models import Course, Main_Learn, Sub_Learn, Sub_Sub_Learn, Teacher,Ticket, teacher_courses
 from django.shortcuts import render
 from random import randint
+from datetime import datetime
+import requests
+from persiantools.jdatetime import JalaliDate, JalaliDateTime
+import pyzt
 
 
 def course_list(request):
@@ -125,10 +129,23 @@ def generate_random_code():
     creates a random 8 digit code for reservation
     
     '''
-    
     code = randint(10000000,99999999)
     try:
         Ticket.objects.get(reservation=code)
         generate_random_code()
     except:
         return code
+
+def get_today_holidays():
+    todays_date = JalaliDate(1395, 3, 1).strftime("%Y/%m/%d")
+    url = f'https://holidayapi.ir/jalali/{todays_date}'
+    response = requests.get(url)
+    data = response.json()
+    return data
+
+def holiday(request):
+    for i in get_today_holidays():
+        if i == True:
+            return HttpResponse('کاربر گرامی با توجه به تعطیلی امروز ممکن است برخی از سفارشات و یا پشتیبانیها با تاخیر انجام شود')
+        if i == False:
+            return HttpResponse('همه چیز اوکیه')
