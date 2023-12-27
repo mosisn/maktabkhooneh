@@ -78,6 +78,11 @@
     </div>
       <h4>درباره این دوره:</h4>
       <p style="margin: 7%;">    {{ courses.about }}</p>
+      <a href="{{courses.number}}/{{courses}}">
+        <button style="width: fit-content;" class="btn btn-warning">    نظرات    </button>
+
+      </a>
+
     <form style="margin: 10%;" method="post">
       {% csrf_token %}
       <div class="row">
