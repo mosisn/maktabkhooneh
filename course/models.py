@@ -126,12 +126,12 @@ def teacher_courses(Teacher):
         if Teacher == i:
             return  Course.name
         
-class Comments(models.Model):
-    course = models.ForeignKey(Course, on_delete=models.PROTECT)
-    name = models.CharField(max_length= 200)
-    last_name = models.CharField(max_length= 200)
-    email = models.EmailField()
-    comment = models.TextField()
+# class Comments(models.Model):
+#     course = models.ForeignKey(Course, on_delete=models.PROTECT)
+#     name = models.CharField(max_length= 200)
+#     last_name = models.CharField(max_length= 200)
+#     email = models.EmailField()
+#     comment = models.TextField()
     
-    def __str__(self) -> str:
-        return f'{self.name} {self.last_name}'
+#     def __str__(self) -> str:
+#         return f'{self.name} {self.last_name}'
